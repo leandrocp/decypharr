@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"sort"
+	"strings"
 	"sync"
 	"time"
 )
@@ -103,7 +104,7 @@ func (ts *TorrentStorage) GetAll(category string, filter string, hashes []string
 		filtered := make([]*Torrent, 0)
 		for _, hash := range hashes {
 			for _, torrent := range torrents {
-				if torrent.Hash == hash {
+				if strings.EqualFold(torrent.Hash, hash) {
 					filtered = append(filtered, torrent)
 				}
 			}
